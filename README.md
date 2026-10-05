@@ -74,6 +74,12 @@ con los campos correspondientes a la información de cada producto.
 
 Aplicar los conocimientos de programación en C#, Windows Forms y conexión a bases de datos para desarrollar una aplicación CRUD que permita administrar registros almacenados en MySQL.
 
+
+## Resultados
+
+<img width="690" height="627" alt="image" src="https://github.com/user-attachments/assets/dff1828f-cbad-4248-9c81-6fa5ce956986" />
+
+
 ## Autor
 
 **Aimee Matias**
