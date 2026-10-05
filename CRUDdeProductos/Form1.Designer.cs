@@ -40,31 +40,33 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.dgvCrud = new System.Windows.Forms.DataGridView();
-            this.pbImagen = new System.Windows.Forms.PictureBox();
-            this.panelTitulo = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtBusqueda = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblBusqueda = new System.Windows.Forms.Label();
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.itemList = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.clFolio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clImagen = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pbImagen = new System.Windows.Forms.PictureBox();
+            this.panelTitulo = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblBusqueda = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtBusqueda = new System.Windows.Forms.TextBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.itemList = new System.Windows.Forms.ImageList(this.components);
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCrud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.panelTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFolio
@@ -155,159 +157,7 @@
             this.dgvCrud.RowTemplate.Height = 24;
             this.dgvCrud.Size = new System.Drawing.Size(573, 155);
             this.dgvCrud.TabIndex = 9;
-            // 
-            // pbImagen
-            // 
-            this.pbImagen.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen.Image")));
-            this.pbImagen.InitialImage = null;
-            this.pbImagen.Location = new System.Drawing.Point(449, 77);
-            this.pbImagen.Name = "pbImagen";
-            this.pbImagen.Size = new System.Drawing.Size(142, 133);
-            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImagen.TabIndex = 10;
-            this.pbImagen.TabStop = false;
-            // 
-            // panelTitulo
-            // 
-            this.panelTitulo.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panelTitulo.Controls.Add(this.pictureBox2);
-            this.panelTitulo.Controls.Add(this.lblTitulo);
-            this.panelTitulo.Location = new System.Drawing.Point(51, 13);
-            this.panelTitulo.Name = "panelTitulo";
-            this.panelTitulo.Size = new System.Drawing.Size(573, 41);
-            this.panelTitulo.TabIndex = 11;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.panel1.Controls.Add(this.lblBusqueda);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.txtBusqueda);
-            this.panel1.Location = new System.Drawing.Point(51, 278);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(573, 40);
-            this.panel1.TabIndex = 12;
-            // 
-            // txtBusqueda
-            // 
-            this.txtBusqueda.Location = new System.Drawing.Point(103, 12);
-            this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(239, 22);
-            this.txtBusqueda.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(348, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 33);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblBusqueda
-            // 
-            this.lblBusqueda.AutoSize = true;
-            this.lblBusqueda.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblBusqueda.Location = new System.Drawing.Point(14, 15);
-            this.lblBusqueda.Name = "lblBusqueda";
-            this.lblBusqueda.Size = new System.Drawing.Size(72, 16);
-            this.lblBusqueda.TabIndex = 2;
-            this.lblBusqueda.Text = "Búsqueda:";
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTitulo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblTitulo.ImageIndex = 5;
-            this.lblTitulo.Location = new System.Drawing.Point(14, 16);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(129, 16);
-            this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "CRUD de Productos";
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregar.ImageIndex = 0;
-            this.btnAgregar.ImageList = this.itemList;
-            this.btnAgregar.Location = new System.Drawing.Point(51, 485);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(104, 33);
-            this.btnAgregar.TabIndex = 13;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnModificar.ImageIndex = 3;
-            this.btnModificar.ImageList = this.itemList;
-            this.btnModificar.Location = new System.Drawing.Point(171, 488);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(125, 26);
-            this.btnModificar.TabIndex = 14;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.ImageIndex = 4;
-            this.btnEliminar.ImageList = this.itemList;
-            this.btnEliminar.Location = new System.Drawing.Point(302, 488);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(108, 34);
-            this.btnEliminar.TabIndex = 15;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLimpiar.ImageIndex = 2;
-            this.btnLimpiar.ImageList = this.itemList;
-            this.btnLimpiar.Location = new System.Drawing.Point(416, 485);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(111, 34);
-            this.btnLimpiar.TabIndex = 16;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSalir.ImageIndex = 1;
-            this.btnSalir.ImageList = this.itemList;
-            this.btnSalir.Location = new System.Drawing.Point(533, 485);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(91, 34);
-            this.btnSalir.TabIndex = 17;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            // 
-            // itemList
-            // 
-            this.itemList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("itemList.ImageStream")));
-            this.itemList.TransparentColor = System.Drawing.Color.Transparent;
-            this.itemList.Images.SetKeyName(0, "agregar.png");
-            this.itemList.Images.SetKeyName(1, "cerrar-sesion.png");
-            this.itemList.Images.SetKeyName(2, "limpiar.png");
-            this.itemList.Images.SetKeyName(3, "editar.png");
-            this.itemList.Images.SetKeyName(4, "eliminar.png");
-            this.itemList.Images.SetKeyName(5, "tienda-de-comestibles.png");
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(149, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(46, 35);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.dgvCrud.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCrud_CellClick);
             // 
             // clFolio
             // 
@@ -344,6 +194,170 @@
             this.clImagen.Name = "clImagen";
             this.clImagen.Width = 125;
             // 
+            // pbImagen
+            // 
+            this.pbImagen.Image = ((System.Drawing.Image)(resources.GetObject("pbImagen.Image")));
+            this.pbImagen.InitialImage = null;
+            this.pbImagen.Location = new System.Drawing.Point(449, 77);
+            this.pbImagen.Name = "pbImagen";
+            this.pbImagen.Size = new System.Drawing.Size(142, 133);
+            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImagen.TabIndex = 10;
+            this.pbImagen.TabStop = false;
+            this.pbImagen.Click += new System.EventHandler(this.pbImagen_Click);
+            // 
+            // panelTitulo
+            // 
+            this.panelTitulo.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panelTitulo.Controls.Add(this.pictureBox2);
+            this.panelTitulo.Controls.Add(this.lblTitulo);
+            this.panelTitulo.Location = new System.Drawing.Point(51, 13);
+            this.panelTitulo.Name = "panelTitulo";
+            this.panelTitulo.Size = new System.Drawing.Size(573, 41);
+            this.panelTitulo.TabIndex = 11;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(149, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(46, 35);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTitulo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTitulo.ImageIndex = 5;
+            this.lblTitulo.Location = new System.Drawing.Point(14, 16);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(129, 16);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "CRUD de Productos";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel1.Controls.Add(this.lblBusqueda);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.txtBusqueda);
+            this.panel1.Location = new System.Drawing.Point(51, 278);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(573, 40);
+            this.panel1.TabIndex = 12;
+            // 
+            // lblBusqueda
+            // 
+            this.lblBusqueda.AutoSize = true;
+            this.lblBusqueda.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblBusqueda.Location = new System.Drawing.Point(14, 15);
+            this.lblBusqueda.Name = "lblBusqueda";
+            this.lblBusqueda.Size = new System.Drawing.Size(72, 16);
+            this.lblBusqueda.TabIndex = 2;
+            this.lblBusqueda.Text = "Búsqueda:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(348, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(50, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // txtBusqueda
+            // 
+            this.txtBusqueda.Location = new System.Drawing.Point(103, 12);
+            this.txtBusqueda.Name = "txtBusqueda";
+            this.txtBusqueda.Size = new System.Drawing.Size(239, 22);
+            this.txtBusqueda.TabIndex = 0;
+            this.txtBusqueda.TextChanged += new System.EventHandler(this.txtBusqueda_TextChanged);
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregar.ImageIndex = 0;
+            this.btnAgregar.ImageList = this.itemList;
+            this.btnAgregar.Location = new System.Drawing.Point(51, 485);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(104, 33);
+            this.btnAgregar.TabIndex = 13;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // itemList
+            // 
+            this.itemList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("itemList.ImageStream")));
+            this.itemList.TransparentColor = System.Drawing.Color.Transparent;
+            this.itemList.Images.SetKeyName(0, "agregar.png");
+            this.itemList.Images.SetKeyName(1, "cerrar-sesion.png");
+            this.itemList.Images.SetKeyName(2, "limpiar.png");
+            this.itemList.Images.SetKeyName(3, "editar.png");
+            this.itemList.Images.SetKeyName(4, "eliminar.png");
+            this.itemList.Images.SetKeyName(5, "tienda-de-comestibles.png");
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnModificar.ImageIndex = 3;
+            this.btnModificar.ImageList = this.itemList;
+            this.btnModificar.Location = new System.Drawing.Point(171, 488);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(125, 26);
+            this.btnModificar.TabIndex = 14;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEliminar.ImageIndex = 4;
+            this.btnEliminar.ImageList = this.itemList;
+            this.btnEliminar.Location = new System.Drawing.Point(302, 488);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(108, 34);
+            this.btnEliminar.TabIndex = 15;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLimpiar.ImageIndex = 2;
+            this.btnLimpiar.ImageList = this.itemList;
+            this.btnLimpiar.Location = new System.Drawing.Point(416, 485);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(111, 34);
+            this.btnLimpiar.TabIndex = 16;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSalir.ImageIndex = 1;
+            this.btnSalir.ImageList = this.itemList;
+            this.btnSalir.Location = new System.Drawing.Point(533, 485);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(91, 34);
+            this.btnSalir.TabIndex = 17;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -369,14 +383,16 @@
             this.Controls.Add(this.lblFolio);
             this.Name = "Form1";
             this.Text = "CRUD Productos";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCrud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.panelTitulo.ResumeLayout(false);
             this.panelTitulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -413,6 +429,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clCantidad;
         private System.Windows.Forms.DataGridViewImageColumn clImagen;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 
