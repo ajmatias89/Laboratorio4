@@ -40,11 +40,6 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.dgvCrud = new System.Windows.Forms.DataGridView();
-            this.clFolio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clImagen = new System.Windows.Forms.DataGridViewImageColumn();
             this.pbImagen = new System.Windows.Forms.PictureBox();
             this.panelTitulo = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -60,6 +55,11 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.clFolio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clImagen = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCrud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.panelTitulo.SuspendLayout();
@@ -158,41 +158,6 @@
             this.dgvCrud.Size = new System.Drawing.Size(573, 155);
             this.dgvCrud.TabIndex = 9;
             this.dgvCrud.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCrud_CellClick);
-            // 
-            // clFolio
-            // 
-            this.clFolio.HeaderText = "Folio";
-            this.clFolio.MinimumWidth = 6;
-            this.clFolio.Name = "clFolio";
-            this.clFolio.Width = 125;
-            // 
-            // clNombre
-            // 
-            this.clNombre.HeaderText = "Nombre";
-            this.clNombre.MinimumWidth = 6;
-            this.clNombre.Name = "clNombre";
-            this.clNombre.Width = 125;
-            // 
-            // clPrecio
-            // 
-            this.clPrecio.HeaderText = "Precio";
-            this.clPrecio.MinimumWidth = 6;
-            this.clPrecio.Name = "clPrecio";
-            this.clPrecio.Width = 125;
-            // 
-            // clCantidad
-            // 
-            this.clCantidad.HeaderText = "Cantidad";
-            this.clCantidad.MinimumWidth = 6;
-            this.clCantidad.Name = "clCantidad";
-            this.clCantidad.Width = 125;
-            // 
-            // clImagen
-            // 
-            this.clImagen.HeaderText = "Imagen";
-            this.clImagen.MinimumWidth = 6;
-            this.clImagen.Name = "clImagen";
-            this.clImagen.Width = 125;
             // 
             // pbImagen
             // 
@@ -358,6 +323,42 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // clFolio
+            // 
+            this.clFolio.HeaderText = "Folio";
+            this.clFolio.MinimumWidth = 6;
+            this.clFolio.Name = "clFolio";
+            this.clFolio.Width = 125;
+            // 
+            // clNombre
+            // 
+            this.clNombre.HeaderText = "Nombre";
+            this.clNombre.MinimumWidth = 6;
+            this.clNombre.Name = "clNombre";
+            this.clNombre.Width = 125;
+            // 
+            // clPrecio
+            // 
+            this.clPrecio.HeaderText = "Precio";
+            this.clPrecio.MinimumWidth = 6;
+            this.clPrecio.Name = "clPrecio";
+            this.clPrecio.Width = 125;
+            // 
+            // clCantidad
+            // 
+            this.clCantidad.HeaderText = "Cantidad";
+            this.clCantidad.MinimumWidth = 6;
+            this.clCantidad.Name = "clCantidad";
+            this.clCantidad.Width = 125;
+            // 
+            // clImagen
+            // 
+            this.clImagen.HeaderText = "Imagen";
+            this.clImagen.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.clImagen.MinimumWidth = 6;
+            this.clImagen.Name = "clImagen";
+            this.clImagen.Width = 125;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -424,12 +425,12 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.ImageList itemList;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clFolio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn clPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn clCantidad;
         private System.Windows.Forms.DataGridViewImageColumn clImagen;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 

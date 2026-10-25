@@ -87,6 +87,8 @@ namespace CRUDdeProductos
             {
                 Console.WriteLine("Actualización existosa");
             }
+
+            cargarProductos();
         }
 
         private void CargarDatosProductos()
@@ -185,7 +187,7 @@ namespace CRUDdeProductos
                     todoOk = true;
                 }
             }
-            return true;
+            return todoOk;
 
         }
 
