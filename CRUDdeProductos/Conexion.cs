@@ -27,36 +27,62 @@ namespace CRUDdeProductos
         public static List<Productos> GetProductos(string filtro)
         {
             List<Productos> listaProductos = new List<Productos>();
-            string query = "SELECT id, nombre, precio, cantidad, imagen FROM productos";
- 
-            if (!string.IsNullOrEmpty(filtro))
+
+            string query = @"SELECT id, nombre, precio, cantidad,
+                     imagen, anulado, fechaCreacion,
+                     fechaModificacion, usuario
+                     FROM productos
+                     WHERE anulado = 0";
+
+            if (!string.IsNullOrWhiteSpace(filtro))
             {
-                query += " WHERE id LIKE @filtro OR nombre LIKE @filtro " + " OR precio LIKE @filtro OR cantidad LIKE @filtro";
+                query += @" AND (CAST(id AS CHAR) LIKE @filtro
+                    OR nombre LIKE @filtro
+                    OR CAST(precio AS CHAR) LIKE @filtro
+                    OR CAST(cantidad AS CHAR) LIKE @filtro)";
             }
+
             using (MySqlConnection conn = ObtenerConexion())
             {
-                if (conn == null) return listaProductos;
+                if (conn == null)
+                    return listaProductos;
+
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    if (!string.IsNullOrEmpty(filtro))
+                    if (!string.IsNullOrWhiteSpace(filtro))
                     {
-                        cmd.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
+                        cmd.Parameters.AddWithValue(
+                            "@filtro", "%" + filtro + "%");
                     }
 
-                    using (MySqlDataReader mReader = cmd.ExecuteReader())
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        while (mReader.Read())
+                        while (reader.Read())
                         {
                             Productos prod = new Productos();
 
-                            prod.ID = Convert.ToInt32(mReader["id"]);
-                            prod.Nombre = mReader["nombre"].ToString();
-                            prod.Precio = Convert.ToDecimal(mReader["precio"]);
-                            prod.Cantidad = Convert.ToInt32(mReader["cantidad"]);
-                            prod.Imagen = mReader["imagen"] != DBNull.Value ? (byte[])mReader["imagen"] : null;
+                            prod.ID = Convert.ToInt32(reader["id"]);
+                            prod.Nombre = reader["nombre"].ToString();
+                            prod.Precio = Convert.ToDecimal(reader["precio"]);
+                            prod.Cantidad = Convert.ToInt32(reader["cantidad"]);
+
+                            prod.Imagen = reader["imagen"] != DBNull.Value
+                                ? (byte[])reader["imagen"] : null;
+
+                            prod.Anulado =
+                                Convert.ToBoolean(reader["anulado"]);
+
+                            prod.FechaCreacion =
+                                Convert.ToDateTime(reader["fechaCreacion"]);
+
+                            prod.FechaModificacion =
+                                Convert.ToDateTime(reader["fechaModificacion"]);
+
+                            prod.Usuario = reader["usuario"] == DBNull.Value
+                                ? "" : reader["usuario"].ToString();
+
                             listaProductos.Add(prod);
                         }
-                        mReader.Close();
                     }
                 }
             }
@@ -93,7 +119,7 @@ namespace CRUDdeProductos
         public static bool UpdateSeguro(string tbName, Dictionary<string, object> data, string idColumn, int idValue)
         {
             var setParts = new List<string>();
-            foreach(var key in data.Keys)
+            foreach (var key in data.Keys)
             {
                 setParts.Add($"{key} = @{key}");
             }
@@ -103,13 +129,13 @@ namespace CRUDdeProductos
 
             try
             {
-                using (MySqlConnection conexion = ObtenerConexion()) 
+                using (MySqlConnection conexion = ObtenerConexion())
                 {
-                    if(conexion == null) return false;
+                    if (conexion == null) return false;
 
                     using (MySqlCommand stmt = new MySqlCommand(sql, conexion))
                     {
-                        foreach(var kvp in data)
+                        foreach (var kvp in data)
                         {
                             stmt.Parameters.AddWithValue("@" + kvp.Key, kvp.Value ?? DBNull.Value);
                         }
@@ -127,7 +153,14 @@ namespace CRUDdeProductos
         }
         public static bool DeleteSeguro(string tbName, string idColumn, int idValue)
         {
-            string sql = $"DELETE FROM {tbName} WHERE {idColumn} = @id";
+
+            if (tbName != "Productos" || idColumn != "id")
+                return false;
+
+            string sql = @"UPDATE productos
+                   SET anulado = 1,
+                       usuario = @usuario
+                   WHERE id = @id AND anulado = 0";
 
             try
             {
@@ -136,19 +169,20 @@ namespace CRUDdeProductos
                     if (conexion == null)
                         return false;
 
-                    using (MySqlCommand stmt = new MySqlCommand(sql, conexion))
+                    using (MySqlCommand stmt =
+                        new MySqlCommand(sql, conexion))
                     {
                         stmt.Parameters.AddWithValue("@id", idValue);
+                        stmt.Parameters.AddWithValue(
+                            "@usuario", Environment.UserName);
 
-                        stmt.ExecuteNonQuery();
-
-                        return true;
+                        return stmt.ExecuteNonQuery() > 0;
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Error en DELETE: " + ex.Message);
+                MessageBox.Show("Error al anular: " + ex.Message);
                 return false;
             }
         }

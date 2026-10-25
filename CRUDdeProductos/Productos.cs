@@ -13,5 +13,10 @@ namespace CRUDdeProductos
         public decimal Precio { get; set; }
         public int Cantidad { get; set; }
         public byte[] Imagen { get; set; }
+
+        public bool Anulado { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
+        public string Usuario { get; set; }
     }
 }

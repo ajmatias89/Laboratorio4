@@ -33,37 +33,67 @@ namespace CRUDdeProductos
         private void cargarProductos(string filtro = "")
         {
             dgvCrud.Rows.Clear();
-            dgvCrud.Refresh();
+
             listaProductos = Conexion.GetProductos(filtro);
 
             foreach (var prod in listaProductos)
             {
-                Image img = null;
-                if (prod.Imagen != null && prod.Imagen.Length > 0)
+                Bitmap img = null;
+
+                try
                 {
-                    using (MemoryStream ms = new MemoryStream(prod.Imagen))
-                    {
-                        using (Bitmap bmp = new Bitmap(ms))
-                        {
-                            img = new Bitmap(bmp);
-                        }
-                    }
+                    img = ByteArrayToImage(prod.Imagen);
                 }
-                dgvCrud.Rows.Add(prod.ID, prod.Nombre, prod.Precio, prod.Cantidad, img);
+                catch (ArgumentException)
+                {
+                    // Continúa sin imagen si los datos no son válidos.
+                }
+
+                dgvCrud.Rows.Add(
+                    prod.ID,
+                    prod.Nombre,
+                    prod.Precio,
+                    prod.Cantidad,
+                    img
+                );
             }
         }
 
         private void dgvCrud_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
+            if (e.RowIndex < 0 ||
+        e.RowIndex >= dgvCrud.Rows.Count ||
+        dgvCrud.Rows[e.RowIndex].IsNewRow)
                 return;
 
             DataGridViewRow fila = dgvCrud.Rows[e.RowIndex];
 
-            txtFolio.Text = Convert.ToInt32(fila.Cells[0].Value).ToString();
+            txtFolio.Text = Convert.ToString(fila.Cells[0].Value);
             txtNombre.Text = Convert.ToString(fila.Cells[1].Value);
-            txtPrecio.Text = Convert.ToDecimal(fila.Cells[2].Value).ToString();
-            txtCantidad.Text = Convert.ToInt32(fila.Cells[3].Value).ToString();
+            txtPrecio.Text = Convert.ToString(fila.Cells[2].Value);
+            txtCantidad.Text = Convert.ToString(fila.Cells[3].Value);
+
+            int id = Convert.ToInt32(fila.Cells[0].Value);
+
+            Productos producto = listaProductos
+                .FirstOrDefault(p => p.ID == id);
+
+            pbImagen.Image = null;
+
+            if (producto != null)
+            {
+                try
+                {
+                    pbImagen.Image =
+                        ByteArrayToImage(producto.Imagen);
+                }
+                catch (ArgumentException)
+                {
+                    pbImagen.Image = null;
+                }
+            }
+
+            pbImagen.SizeMode = PictureBoxSizeMode.Zoom;
 
             btnAgregar.Enabled = false;
             btnModificar.Enabled = true;
@@ -76,27 +106,59 @@ namespace CRUDdeProductos
 
         private void ModificarDatosBD()
         {
-            CargarDatosProductos();
-            int Folio = int.Parse(txtFolio.Text);
+            if (!datosCorrectos())
+                return;
 
-            MessageBox.Show("El id del producto es: " + Folio);
-
-            bool resultado = Conexion.UpdateSeguro("Productos", myProducto, "id", Folio);
-
-            if(resultado)
+            if (!int.TryParse(txtFolio.Text, out int Folio))
             {
-                Console.WriteLine("Actualización existosa");
+                MessageBox.Show("Seleccione un producto.");
+                return;
             }
 
-            cargarProductos();
+            try
+            {
+                CargarDatosProductos();
+
+                bool resultado = Conexion.UpdateSeguro(
+                    "Productos", myProducto, "id", Folio);
+
+                if (resultado)
+                {
+                    MessageBox.Show("Producto modificado correctamente.");
+
+                    cargarProductos();
+                    limpiarCampos();
+
+                    btnModificar.Enabled = false;
+                    btnAgregar.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo modificar el producto.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar: " + ex.Message);
+            }
         }
 
         private void CargarDatosProductos()
         {
-            myProducto["cantidad"] = int.Parse(txtCantidad.Text.Trim());
-            myProducto["precio"] = decimal.Parse(txtPrecio.Text.Trim());
+            myProducto.Clear();
+
             myProducto["nombre"] = txtNombre.Text.Trim();
-            myProducto["Imagen"] = ImageToByteArray(pictureBox1.Image);
+
+            myProducto["precio"] =
+                decimal.Parse(txtPrecio.Text.Trim());
+
+            myProducto["cantidad"] =
+                int.Parse(txtCantidad.Text.Trim());
+
+            myProducto["imagen"] =
+                ImageToByteArray(pbImagen.Image);
+
+            myProducto["usuario"] = Environment.UserName;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -148,45 +210,72 @@ namespace CRUDdeProductos
 
         private void limpiarCampos()
         {
+            txtFolio.Clear();
             txtNombre.Clear();
             txtPrecio.Clear();
             txtCantidad.Clear();
-            pictureBox1.Image = null;
+
+            pbImagen.Image = null;
+
+            errorProvider1.Clear();
+            myProducto.Clear();
+
             btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
         }
 
-        private byte[] ImageToByteArray(Image Img)
+
+        private static byte[] ImageToByteArray(Image img)
         {
-            if(Img == null)
+            if (img == null)
+                return new byte[0];
+
+            using (MemoryStream ms = new MemoryStream())
             {
-                return null;
-            }
-            using (MemoryStream mMemoryStream = new MemoryStream())
-            {
-                Img.Save(mMemoryStream, Img.RawFormat);
-                return mMemoryStream.ToArray();
+                img.Save(ms, ImageFormat.Png);
+                return ms.ToArray();
             }
         }
+
+        private static Bitmap ByteArrayToImage(byte[] datos)
+        {
+            if (datos == null || datos.Length == 0)
+                return null;
+
+            using (MemoryStream ms = new MemoryStream(datos))
+            using (Image img = Image.FromStream(ms))
+            {
+                return new Bitmap(img);
+            }
+        }
+
         private bool datosCorrectos()
         {
-            camposValidar.Add((txtNombre, new ValidatorTexto()));
-            camposValidar.Add((txtPrecio, new ValidadorDecimal()));
-            camposValidar.Add((txtCantidad, new ValidadorEntero()));
+            bool todoOk = true;
 
-            foreach(var item in camposValidar)
+            camposValidar.Clear();
+            errorProvider1.Clear();
+
+            camposValidar.Add(
+                (txtNombre, new ValidatorTexto()));
+
+            camposValidar.Add(
+                (txtPrecio, new ValidadorDecimal()));
+
+            camposValidar.Add(
+                (txtCantidad, new ValidadorEntero()));
+
+            foreach (var item in camposValidar)
             {
                 if (!item.validador.EsValido(item.txt.Text))
                 {
-                    errorProvider1.SetError(item.txt, item.validador.MensajeError);
+                    errorProvider1.SetError(
+                        item.txt, item.validador.MensajeError);
+
                     todoOk = false;
-                    break;
-                }
-                else
-                {
-                    errorProvider1.SetError(item.txt, string.Empty);
-                    todoOk = true;
                 }
             }
+
             return todoOk;
 
         }
